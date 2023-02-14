@@ -3,13 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="Group 20220818-11:05:45">
-            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/MainHome.java</file>
-            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/Helper.java</file>
+            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/UpdateCustomers.java</file>
             <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/Rigester.java</file>
-            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/login.java</file>
-            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/Test.java</file>
-            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/UserList.java</file>
+            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/TransactionCustomers.java</file>
+            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/AddCustomer.java</file>
+            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/UserLists.java</file>
             <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/DBConnect.java</file>
+            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/AddPayment.java</file>
+            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/AddReceipt.java</file>
+            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/MainHome.java</file>
+            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/About.java</file>
+            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/Helper.java</file>
+            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/login.java</file>
+            <file>file:/C:/Users/Hemmat/Documents/NetBeansProjects/balance/src/balance/ChangePassword.java</file>
         </group>
     </open-files>
 </project-private>

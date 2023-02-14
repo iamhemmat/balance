@@ -33,11 +33,8 @@ public class Rigester extends javax.swing.JFrame {
         tf_username = new javax.swing.JTextField();
         pf_password = new javax.swing.JPasswordField();
         ps_confirm = new javax.swing.JPasswordField();
-        jrb_admin = new javax.swing.JRadioButton();
-        jEditor = new javax.swing.JRadioButton();
         btn_rigester = new javax.swing.JButton();
         btn_cancel = new javax.swing.JButton();
-        jb_user = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -63,12 +60,6 @@ public class Rigester extends javax.swing.JFrame {
         ps_confirm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ps_confirm.setToolTipText("Confirm your password");
 
-        btng__auth.add(jrb_admin);
-        jrb_admin.setText("Admin");
-
-        btng__auth.add(jEditor);
-        jEditor.setText("Editor");
-
         btn_rigester.setText("Rigester");
         btn_rigester.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,9 +73,6 @@ public class Rigester extends javax.swing.JFrame {
                 btn_cancelActionPerformed(evt);
             }
         });
-
-        btng__auth.add(jb_user);
-        jb_user.setText("User");
 
         jLabel1.setText("Full-Name");
 
@@ -106,7 +94,7 @@ public class Rigester extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -117,26 +105,24 @@ public class Rigester extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(5, 5, 5)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pf_password)
-                    .addComponent(tf_username, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                    .addComponent(tf_fullName)
-                    .addComponent(ps_confirm)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jrb_admin)
-                        .addGap(18, 18, 18)
-                        .addComponent(jEditor)
-                        .addGap(18, 18, 18)
-                        .addComponent(jb_user))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_rigester, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(58, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_rigester, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(55, 55, 55))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(171, 171, 171)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pf_password)
+                            .addComponent(tf_username, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                            .addComponent(tf_fullName)
+                            .addComponent(ps_confirm))
+                        .addGap(55, 55, 55))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +134,7 @@ public class Rigester extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tf_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pf_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,18 +143,13 @@ public class Rigester extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ps_confirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jrb_admin)
-                    .addComponent(jEditor)
-                    .addComponent(jb_user))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_rigester)
                     .addComponent(btn_cancel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,9 +162,8 @@ public class Rigester extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cancelActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
-      Helper.center(this);
-       
+this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+      Helper.center(this);       
     }//GEN-LAST:event_formWindowOpened
 
     private void btn_rigesterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rigesterActionPerformed
@@ -195,16 +175,8 @@ public class Rigester extends javax.swing.JFrame {
                    
                     if(pf_password.getText().equals(ps_confirm.getText())){
                       
-                   int auth = 0;
-                   if( btng__auth.isSelected(jrb_admin.getModel())){
-                       auth = 4;
-                   }else if( btng__auth.isSelected(jEditor.getModel())){
-                       auth = 2; 
-                   }else if( btng__auth.isSelected(jb_user.getModel())){
-                       auth = 1;
-                   }else {
-                     auth = 0;  
-                   }
+                   int auth = 1;
+                   
                    
                    if(auth !=0){
                        //validate done in UI
@@ -216,10 +188,9 @@ public class Rigester extends javax.swing.JFrame {
                              Helper.showNotification("you have registerd sucessfully");
                           
                              if(createdByAdmin==true){
-                                 MainHome a = new MainHome();
-                                 a.auth_leve = 4;
-                                 this.setVisible(false);
-                                 a.setVisible(true);
+                                
+                                this.setVisible(false);
+                                
                              }else{
                               login l = new login();
                              this.setVisible(false);
@@ -310,14 +281,11 @@ public class Rigester extends javax.swing.JFrame {
     private javax.swing.JButton btn_cancel;
     private javax.swing.JButton btn_rigester;
     private javax.swing.ButtonGroup btng__auth;
-    private javax.swing.JRadioButton jEditor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JRadioButton jb_user;
-    private javax.swing.JRadioButton jrb_admin;
     private javax.swing.JPasswordField pf_password;
     private javax.swing.JPasswordField ps_confirm;
     private javax.swing.JTextField tf_fullName;

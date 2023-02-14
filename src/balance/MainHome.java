@@ -1,20 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package balance;
 
-/**
- *
- * @author Hemmat
- */
+import java.awt.Toolkit;
+import javax.swing.*;
+
+
 public class MainHome extends javax.swing.JFrame {
 
-    int auth_leve = 1;
+    int theme = 0; //0 is light, 1 them is dark;
+    int auth_leve =1;
+    int userId;
+  
+    @Override
+    public void setUndecorated(boolean undecorated) {
+        super.setUndecorated(true); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+     
     public MainHome() {
+       
         initComponents();
     }
+    
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,6 +49,13 @@ public class MainHome extends javax.swing.JFrame {
         jMenu12 = new javax.swing.JMenu();
         jMenu13 = new javax.swing.JMenu();
         jMenu15 = new javax.swing.JMenu();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btn_update = new javax.swing.JButton();
+        btn_delete = new javax.swing.JButton();
+        tf_search = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         m_users = new javax.swing.JMenu();
         mi_AddUser = new javax.swing.JMenuItem();
@@ -51,6 +66,7 @@ public class MainHome extends javax.swing.JFrame {
         mi_report = new javax.swing.JMenu();
         m_setting = new javax.swing.JMenu();
         mi_changeTheme = new javax.swing.JMenuItem();
+        m_item_change_password = new javax.swing.JMenuItem();
         mi_about = new javax.swing.JMenuItem();
 
         jMenuItem3.setText("jMenuItem3");
@@ -86,13 +102,81 @@ public class MainHome extends javax.swing.JFrame {
         jMenu15.setText("jMenu15");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 0, 204));
+        setForeground(new java.awt.Color(0, 0, 255));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Name", "Balance"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        btn_update.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
+
+        btn_delete.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btn_delete.setText("Delete");
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteActionPerformed(evt);
+            }
+        });
+
+        tf_search.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        tf_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_searchActionPerformed(evt);
+            }
+        });
+        tf_search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tf_searchKeyReleased(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel1.setText("Search Customers:");
+
+        jButton1.setText("View Customer transication");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         m_users.setText("Users");
+        m_users.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                m_usersActionPerformed(evt);
+            }
+        });
 
         mi_AddUser.setText("Add New User");
         mi_AddUser.addActionListener(new java.awt.event.ActionListener() {
@@ -115,9 +199,19 @@ public class MainHome extends javax.swing.JFrame {
         m_customers.setText("Customer");
 
         mi_AddCustomer.setText("Add new customer");
+        mi_AddCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_AddCustomerActionPerformed(evt);
+            }
+        });
         m_customers.add(mi_AddCustomer);
 
-        mi_showCustomer.setText("Show all customer");
+        mi_showCustomer.setText("Customer List");
+        mi_showCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_showCustomerActionPerformed(evt);
+            }
+        });
         m_customers.add(mi_showCustomer);
 
         mi_report.setText("Report");
@@ -126,11 +220,34 @@ public class MainHome extends javax.swing.JFrame {
         jMenuBar1.add(m_customers);
 
         m_setting.setText("Settings");
+        m_setting.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                m_settingActionPerformed(evt);
+            }
+        });
 
         mi_changeTheme.setText("Change Theme");
+        mi_changeTheme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_changeThemeActionPerformed(evt);
+            }
+        });
         m_setting.add(mi_changeTheme);
 
+        m_item_change_password.setText("Change Password");
+        m_item_change_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                m_item_change_passwordActionPerformed(evt);
+            }
+        });
+        m_setting.add(m_item_change_password);
+
         mi_about.setText("About");
+        mi_about.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_aboutActionPerformed(evt);
+            }
+        });
         m_setting.add(mi_about);
 
         jMenuBar1.add(m_setting);
@@ -141,11 +258,35 @@ public class MainHome extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_update, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_search))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_update)
+                    .addComponent(btn_delete)
+                    .addComponent(tf_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         pack();
@@ -153,7 +294,7 @@ public class MainHome extends javax.swing.JFrame {
 
     private void mi_AddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_AddUserActionPerformed
 
-      this.setVisible(false);
+    
       Rigester r = new Rigester();
       r.setVisible(true);
       r.createdByAdmin =true;
@@ -161,7 +302,23 @@ public class MainHome extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
-        Helper.center(this);
+    
+
+       this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width - 2, Toolkit.getDefaultToolkit().getScreenSize().height - 4);
+       if(theme==0){
+             this.getContentPane().setBackground(java.awt.Color.LIGHT_GRAY);
+         
+        }else{
+             this.getContentPane().setBackground(java.awt.Color.DARK_GRAY);
+          
+        }
+       
+
+        this.setExtendedState(this.MAXIMIZED_BOTH);
+        
+        
+  
+
         switch (auth_leve) {
             case 4:
                 break;
@@ -174,13 +331,144 @@ public class MainHome extends javax.swing.JFrame {
                 this.mi_report.setEnabled(false);
                 break;
         }
+        
+        
+    
+       
+     
+        DBConnect c= new DBConnect();   
+        
+        Object[][] cList =  c.select_table("SELECT id, name, balance FROM customers");
+        String [] name = {"ID","Name","Balance"};
+        jTable1 =  new JTable(cList, name);
+        
+        jScrollPane1.setViewportView(jTable1);
+        
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void mi_ListUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_ListUsersActionPerformed
-
-        this.setVisible(false);
-        new UserList().setVisible(true);
+       UserLists a=    new UserLists();
+       a.setVisible(true);
+       a.current_user_auth = auth_leve; 
     }//GEN-LAST:event_mi_ListUsersActionPerformed
+
+    private void mi_AddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_AddCustomerActionPerformed
+
+       
+        AddCustomer a = new AddCustomer();
+        a.auth = auth_leve;
+        a.setVisible(true);
+    }//GEN-LAST:event_mi_AddCustomerActionPerformed
+
+    private void mi_changeThemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_changeThemeActionPerformed
+
+
+
+
+        if(theme==0){
+                this.getContentPane().setBackground(java.awt.Color.DARK_GRAY);
+          
+                    theme =1;
+        }else{
+            theme=0;
+             this.getContentPane().setBackground(java.awt.Color.LIGHT_GRAY);
+      
+        }
+      
+    }//GEN-LAST:event_mi_changeThemeActionPerformed
+
+    private void m_settingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_settingActionPerformed
+   
+    }//GEN-LAST:event_m_settingActionPerformed
+
+    private void m_usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_usersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_m_usersActionPerformed
+
+    private void mi_showCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_showCustomerActionPerformed
+        UpdateCustomers cl = new UpdateCustomers();
+        
+        cl.setVisible(true);
+        cl.toFront();
+        cl.requestFocus();
+        
+    }//GEN-LAST:event_mi_showCustomerActionPerformed
+
+    private void mi_aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_aboutActionPerformed
+
+       About a = new About();
+      
+       a.setVisible(true);
+    }//GEN-LAST:event_mi_aboutActionPerformed
+
+    private void m_item_change_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_item_change_passwordActionPerformed
+
+    ChangePassword cp  =  new ChangePassword();
+    cp.setVisible(true);
+    cp.currentUserId = userId;
+   
+    }//GEN-LAST:event_m_item_change_passwordActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        
+    }//GEN-LAST:event_jTable1KeyPressed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+            UpdateCustomers up  = new UpdateCustomers();
+            up.name = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
+            up.balance = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+            up.idCustomer = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            
+            up.setVisible(true);
+            
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+
+        String q= "DELETE FROM customers WHERE id ="+jTable1.getValueAt(jTable1.getSelectedRow(),0);
+
+        DBConnect  c  = new  DBConnect();
+        boolean res = c.excute(q);
+        if(res ==true){
+
+            Object[][] cList =  c.select_table("SELECT id, name, balance FROM customers");
+            String [] name = {"ID","Name","Balance"};
+            jTable1 =  new JTable(cList, name);
+            jScrollPane1.setViewportView(jTable1);
+
+        }else{
+            Helper.showNotification("You can not delete beacuse it has many payment and receipt");
+        }
+
+    }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void tf_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_searchActionPerformed
+
+    }//GEN-LAST:event_tf_searchActionPerformed
+
+    private void tf_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_searchKeyReleased
+        DBConnect c= new DBConnect();
+
+        Object[][] cList =  c.select_table("SELECT id, name, balance FROM customers WHERE name LIKE '"+tf_search.getText()+"%'");
+        String [] name = {"ID","Name","Balance"};
+        jTable1 =  new JTable(cList, name);
+
+        jScrollPane1.setViewportView(jTable1);
+
+    }//GEN-LAST:event_tf_searchKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+        TransactionCustomers ts = new TransactionCustomers();
+        ts.setVisible(true);
+        ts.customerId = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +507,10 @@ public class MainHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_delete;
+    private javax.swing.JButton btn_update;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu13;
@@ -236,7 +528,10 @@ public class MainHome extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JMenuBar jMenuBar5;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JMenu m_customers;
+    private javax.swing.JMenuItem m_item_change_password;
     private javax.swing.JMenu m_setting;
     private javax.swing.JMenu m_users;
     private javax.swing.JMenuItem mi_AddCustomer;
@@ -246,5 +541,6 @@ public class MainHome extends javax.swing.JFrame {
     private javax.swing.JMenuItem mi_changeTheme;
     private javax.swing.JMenu mi_report;
     private javax.swing.JMenuItem mi_showCustomer;
+    private javax.swing.JTextField tf_search;
     // End of variables declaration//GEN-END:variables
 }
